@@ -1,13 +1,15 @@
 import React from "react";
-import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react/legacy";
+import { Authenticator, Button } from "@aws-amplify/ui-react";
 
-const App = () => {
+export default function App() {
     return (
-        <div>
-            <h1>Hello from AWS Amplify</h1>
-            <AmplifySignOut />
-        </div>
+        <Authenticator variation="modal">
+            {({ signOut, user }) => (
+                <main>
+                    <h1>Hello {user.username}</h1>
+                    <Button onClick={signOut}>Sign out</Button>
+                </main>
+            )}
+        </Authenticator>
     );
-};
-
-export default withAuthenticator(App);
+}
